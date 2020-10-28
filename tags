@@ -1,0 +1,38 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/3f0ea94/
+I18nAllyShow	plugin/i18nallyvim.vim	/^fun! I18nAllyShow()$/;"	f
+Null.__tostring	lua/yaml.lua	/^function Null.__tostring() return 'yaml.null' end$/;"	f
+Null.isnull	lua/yaml.lua	/^function Null.isnull(v)$/;"	f
+checkdupekey	lua/yaml.lua	/^local function checkdupekey(map, key)$/;"	f
+class.__meta.__call	lua/yaml.lua	/^function class.__meta.__call(cls, ...)$/;"	f
+class.def	lua/yaml.lua	/^function class.def(base, typ, cls)$/;"	f
+countindent	lua/yaml.lua	/^local function countindent(line)$/;"	f
+equalsline	lua/yaml.lua	/^local function equalsline(line, needle)$/;"	f
+g:loaded_i18nallyvim	plugin/i18nallyvim.vim	/^let g:loaded_i18nallyvim = 1$/;"	v
+isemptyline	lua/yaml.lua	/^local function isemptyline(line)$/;"	f
+lines	lua/yaml.lua	/^  lines = select(lines, function(s) return not isemptyline(s) end)$/;"	f
+ltrim	lua/yaml.lua	/^local function ltrim(str)$/;"	f
+parse	lua/yaml.lua	/^local function parse(source)$/;"	f
+parseblockstylestring	lua/yaml.lua	/^local function parseblockstylestring(line, lines, indent)$/;"	f
+parsedocuments	lua/yaml.lua	/^local function parsedocuments(lines)$/;"	f
+parseflowstyle	lua/yaml.lua	/^local function parseflowstyle(line, lines)$/;"	f
+parsemap	lua/yaml.lua	/^function parsemap(line, lines, indent)$/;"	f
+parsescalar	lua/yaml.lua	/^local function parsescalar(line, lines, indent)$/;"	f
+parseseq	lua/yaml.lua	/^local function parseseq(line, lines, indent)$/;"	f
+parseset	lua/yaml.lua	/^local function parseset(line, lines, indent)$/;"	f
+parsestring	lua/yaml.lua	/^local function parsestring(line, stopper)$/;"	f
+parsetimestamp	lua/yaml.lua	/^local function parsetimestamp(line)$/;"	f
+rtrim	lua/yaml.lua	/^local function rtrim(str)$/;"	f
+select	lua/yaml.lua	/^local function select(list, pred)$/;"	f
+show	lua/i18nallyvim.lua	/^local function show(word)$/;"	f
+startswith	lua/yaml.lua	/^local function startswith(haystack, needle)$/;"	f
+types.timestamp:__init	lua/yaml.lua	/^function types.timestamp:__init(y, m, d, h, i, s, f, z)$/;"	f
+types.timestamp:__tostring	lua/yaml.lua	/^function types.timestamp:__tostring()$/;"	f
+types.timestamp:gettz	lua/yaml.lua	/^function types.timestamp:gettz()$/;"	f
