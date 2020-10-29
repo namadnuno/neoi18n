@@ -1,9 +1,12 @@
 local yaml = require 'yaml'
 
+function getTranslationFile()
+  return vim.g['i18nallyvim_file']
+end
 function exists(word)
-  local translationFile = io.open("./example/pt_PT.yaml", "r")
+  local translationFile = io.open(getTranslationFile(), "r")
   io.input(translationFile)
-  local translations = io.read()
+  local translations = translationFile:read('*all')
   io.close(translationFile)
   local parsedYaml = yaml.parse(translations)
   local currentWord = vim.api.nvim_eval('expand("<cword>")')
@@ -14,16 +17,17 @@ function exists(word)
 end
 
 local function show()
-  local translationFile = io.open("./example/pt_PT.yaml", "r")
+  local translationFile = io.open(getTranslationFile(), "r")
   io.input(translationFile)
-  local translations = io.read()
+  local translations = translationFile:read('*all')
   io.close(translationFile)
   local parsedYaml = yaml.parse(translations)
   local currentWord = vim.api.nvim_eval('expand("<cword>")')
   if parsedYaml[currentWord] then
     print(parsedYaml[currentWord])
+    return;
   end
-   print('does not exist!')
+   print('does not exist translation for ' .. currentWord ..'!')
 end
 
 local function add()
@@ -33,7 +37,7 @@ local function add()
    return;
   end
   local translation = vim.api.nvim_eval("input('Translation: ')")
-  local translationFile = io.open("./example/pt_PT.yaml", "a")
+  local translationFile = io.open(getTranslationFile(), "a")
   io.output(translationFile)
   io.write(currentWord .. ': ' .. translation)
   io.close(translationFile)
@@ -43,6 +47,5 @@ end
 
 return {
   show = show,
-  add = add,
-  exists = exists,
+  add = add
 }
