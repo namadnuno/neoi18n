@@ -51,7 +51,7 @@ local function add()
   local translation = vim.api.nvim_eval("input('Translation: ')")
   local translationFile = io.open(getTranslationFile(), "a")
   io.output(translationFile)
-  io.write(currentWord .. ': ' .. translation)
+  io.write("\n" .. currentWord .. ': ' .. translation)
   io.close(translationFile)
 end
 
@@ -148,8 +148,10 @@ end
 local function select_file()
   local path = api.nvim_get_current_line()
   close_window()
-  local currentDir = vim.api.nvim_eval('expand("#:p:h")') .. '/'
-  local translation_file = currentDir .. trim(path)
+  local handle = io.popen("pwd")
+  local currentDir = handle:read("*a")
+  handle:close()
+  local translation_file = trim(currentDir) .. "/" .. trim(path)
   api.nvim_set_var('i18nallyvim_file', translation_file)
 end
 
@@ -164,7 +166,6 @@ local function load_translation_files(direction)
     result[k] = '  '..result[k]
   end
 
-  api.nvim_buf_set_lines(buf, 1, 2, false, {center('HEAD~'..position)})
   api.nvim_buf_set_lines(buf, 3, -1, false, result)
 
   api.nvim_buf_add_highlight(buf, -1, 'whidSubHeader', 1, 0, -1)
