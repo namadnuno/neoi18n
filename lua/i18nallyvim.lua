@@ -15,46 +15,63 @@ function getTranslationFile()
   return vim.g['i18nallyvim_file']
 end
 
-function exists(word)
+function readtranslations()
   local translationFile = io.open(getTranslationFile(), "r")
   io.input(translationFile)
   local translations = translationFile:read('*all')
   io.close(translationFile)
   local parsedYaml = yaml.parse(translations)
-  local currentWord = vim.api.nvim_eval('expand("<cword>")')
-  if parsedYaml[currentWord] then
-    return true
+  if parsedYaml == nil then
+   return {}
   end
+  return parsedYaml
+end
+
+function exists(word)
+  local translations = readtranslations()
+
+  if translations == {} then
+    if translations[word] ~= nil then
+      return true
+    end
+  end
+
   return false
 end
 
 local function show()
-  local translationFile = io.open(getTranslationFile(), "r")
-  io.input(translationFile)
-  local translations = translationFile:read('*all')
-  io.close(translationFile)
-  local parsedYaml = yaml.parse(translations)
-  local currentWord = vim.api.nvim_eval('expand("<cword>")')
-  if parsedYaml[currentWord] then
-    print(parsedYaml[currentWord])
-    return;
+  local translations = readtranslations()
+  currentWord = vim.api.nvim_eval('expand("<cword>")')
+  if translations ~= {} then
+    if translations[currentWord] then
+      print(translations[currentWord])
+      return;
+    end
   end
    print('does not exist translation for ' .. currentWord ..'!')
+end
+
+function writetabletotranslationsfile(translations)
+  local translationFile = io.open(getTranslationFile(), "w")
+  io.output(translationFile)
+  for name,val in pairs(translations) do
+    io.write(name .. ': ' .. val)
+    io.write("\n")
+  end
+  io.close(translationFile)
 end
 
 local function add()
   local currentWord = vim.api.nvim_eval('expand("<cword>")')
   if exists(currentWord) then
-   print("There are already an translation for that word")
+   print("There are already an translation for " .. currentWord)
    return;
   end
+  local translations = readtranslations()
   local translation = vim.api.nvim_eval("input('Translation: ')")
-  local translationFile = io.open(getTranslationFile(), "a")
-  io.output(translationFile)
-  io.write("\n" .. currentWord .. ': ' .. translation)
-  io.close(translationFile)
+  translations[currentWord] = translation
+  writetabletotranslationsfile(translations)
 end
-
 
 local function open_window()
 

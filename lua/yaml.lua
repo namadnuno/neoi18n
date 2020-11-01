@@ -700,10 +700,16 @@ end
 local function parsedocuments(lines)
   lines = select(lines, function(s) return not isemptyline(s) end)
 
+  local in_document = false
+
+  root = {}
+
+  if(lines[1] == nil) then
+    return root
+  end
+
   if sfind(lines[1], '^%%YAML') then tremove(lines, 1) end
 
-  local root = {}
-  local in_document = false
   while #lines > 0 do
     local line = lines[1]
     -- Do we have a document header?
@@ -761,6 +767,7 @@ local function parse(source)
   for line in string.gmatch(source .. '\n', '(.-)\r?\n') do
     tinsert(lines, line)
   end
+
 
   local docs = parsedocuments(lines)
   if #docs == 1 then
