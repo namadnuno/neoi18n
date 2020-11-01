@@ -2,6 +2,8 @@
 
 Working with i18n without bigi.
 
+![](demo.gif)
+
 #Notes
 
 Right now it only works with yaml files, but I have plans to add more extensions.
