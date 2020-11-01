@@ -9,30 +9,30 @@ Right now it only works with yaml files, but I have plans to add more extensions
 ## Installation
 
 ```vim
-Plug 'namadnuno/neovim-i18n'
+Plug 'namadnuno/neoi18n'
 ```
 
 ## Key biddings
 
 ```vim
-  nmap <leader>t :call I18nAllyShow() <CR>
-  nmap <leader>T :call I18nAllyAdd() <CR>
+  nmap <leader>t :call NeoI18nShow() <CR>
+  nmap <leader>T :call NeoI18nAdd() <CR>
 ```
 
 ## Usage
 
 ```vim
-:call I18nAllyCheck()
+:call NeoI18nCheck()
 ```
 It will display an window where you can select you translations file.
 
 ```vim
-:call I18nAllyShow()
+:call NeoI18nShow()
 ```
 Shows the translation for the current word under the cursor.
 
 ```vim
-:call I18nAllyAdd()
+:call NeoI18nAdd()
 ```
 Adds an translation for the key under the cursor.
 

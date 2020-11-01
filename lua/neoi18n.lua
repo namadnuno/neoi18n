@@ -12,7 +12,7 @@ local function center(str)
 end
 
 function getTranslationFile()
-  return vim.g['i18nallyvim_file']
+  return vim.g['neoi18n_file']
 end
 
 function readtranslations()
@@ -144,7 +144,7 @@ local function set_mappings()
   }
 
   for k,v in pairs(mappings) do
-    api.nvim_buf_set_keymap(buf, 'n', k, ':lua require"i18nallyvim".'..v..'<cr>', {
+    api.nvim_buf_set_keymap(buf, 'n', k, ':lua require"neoi18n".'..v..'<cr>', {
         nowait = true, noremap = true, silent = true
       })
   end
@@ -169,7 +169,7 @@ local function select_file()
   local currentDir = handle:read("*a")
   handle:close()
   local translation_file = trim(currentDir) .. "/" .. trim(path)
-  api.nvim_set_var('i18nallyvim_file', translation_file)
+  api.nvim_set_var('neoi18n_file', translation_file)
 end
 
 local function load_translation_files(direction)
