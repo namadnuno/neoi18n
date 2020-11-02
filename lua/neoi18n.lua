@@ -177,7 +177,7 @@ local function load_translation_files(direction)
   position = position + direction;
   if position < 0 then position = 0 end
 
-  local result = vim.fn.systemlist('ack -f | ack \'/(.*).yaml\'')
+  local result = vim.fn.systemlist('ack -f | ack \'/(.*).(yaml|yml)\'')
   if #result == 0 then table.insert(result, '') end
   for k,v in pairs(result) do
     result[k] = '  '..result[k]
